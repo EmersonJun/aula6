@@ -103,11 +103,29 @@ public class App {
         if(texto.trim().equals("hello, world!")) System.out.println("Texto é igual");
         if(texto.trim().equalsIgnoreCase("hello, World!")) System.out.println("Texto é igual");
 
+        String cpf = "12345678910";
+        String cpfformatado = cpf.replaceAll("(\\d{3})(\\d{3})(\\d{3})(\\d{2})", "$1.$2.$3-$4");
+        System.out.println("cpf: "+cpfformatado);
 
+        //mascara telefone
+        String telefone = "41987654321";
+        String telefoneFormatado = telefone.replaceFirst("(\\d{2})(\\d{5})(\\d{4})", "($1)$2-$3");//ordem da foratacao
+        System.out.println("telefone formatado: "+telefoneFormatado);
 
+        System.out.println("informe uma data");
+        String novadata = entrada.nextLine();
 
+        String[] simbolos = {"/","\\\\","\\*", "\\.", "\\-"};
+        for (String s: simbolos) {
+            novadata = novadata.replaceAll(s, "");
+            System.out.println(novadata);
+        }
+        System.out.println("a data digitada é"+
+        novadata.substring(0, 2) +"/"+
+        novadata.substring(2, 4) +"/"+
+        novadata.substring(4, 8));
 
-
-        
+        LocalDate datafinal = LocalDate.parse(novadata, DateTimeFormatter.ofPattern("ddMMyyyy"));
+        System.out.println("data final: "+datafinal.format(frmtExibir));
     }
 }
